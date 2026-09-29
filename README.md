@@ -25,6 +25,28 @@ docker compose logs -f web
 
 Node.js is not required to run the app. Nginx serves the three static app files; no database or Docker volume is needed.
 
+## Production deployment
+
+The production image contains only Nginx on Alpine Linux and `index.html`, `styles.css`, and `app.js`. Playwright, Chromium, Node.js, npm, test files, and `node_modules` are excluded. There is no npm install or frontend build step in Docker; you only need Docker and Compose on the deployment machine.
+
+Use the production override to name the image and automatically restart the service after failures or Docker restarts:
+
+```sh
+docker compose -f compose.yaml -f compose.production.yaml up --build -d
+
+# View production logs
+docker compose -f compose.yaml -f compose.production.yaml logs -f web
+
+# Stop production
+docker compose -f compose.yaml -f compose.production.yaml down
+```
+
+Run the same startup command after updating the source to rebuild and deploy. The production override uses the same service and port as the default setup; it replaces that deployment rather than starting a second instance.
+
+For a public deployment, place an HTTPS reverse proxy on the host in front of `127.0.0.1:8080`. HTTPS is required outside localhost for the UUID API used to add items. Keep the public hostname stable so browser storage stays associated with the same origin. TLS termination is managed by your reverse proxy, not this static app container.
+
+Development dependencies in `package.json` are only for running tests locally. You do not need to install them to build or run either Docker configuration.
+
 ## Use the list
 
 - Type an item and press Enter or select **Add**. Blank names are ignored; duplicate names are allowed.
@@ -76,7 +98,7 @@ For a manual check, add an item in your browser, run `docker compose restart web
 ## Project structure
 
 - `index.html`, `styles.css`, `app.js`: accessible interface, styling, and list/storage behavior.
-- `Dockerfile`, `compose.yaml`, `.dockerignore`: static Nginx image and local launch configuration.
+- `Dockerfile`, `compose.yaml`, `compose.production.yaml`, `.dockerignore`: lightweight static Nginx image and local/production launch configuration.
 - `tests/`, `playwright.config.js`, `scripts/test-restart.js`: browser tests, viewport settings, and container-restart verification.
 - `package.json`, `package-lock.json`: reproducible development dependencies.
 
