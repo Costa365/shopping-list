@@ -23,11 +23,11 @@ docker compose up --build -d
 docker compose logs -f web
 ```
 
-Node.js is not required to run the app. Nginx serves the three static app files; no database or Docker volume is needed.
+Node.js is not required to run the app. Nginx serves the static app and icon files; no database or Docker volume is needed.
 
 ## Production deployment
 
-The production image contains only Nginx on Alpine Linux and `index.html`, `styles.css`, and `app.js`. Playwright, Chromium, Node.js, npm, test files, and `node_modules` are excluded. There is no npm install or frontend build step in Docker; you only need Docker and Compose on the deployment machine.
+The production image contains only Nginx on Alpine Linux and the static app files, icons, and web manifest. Playwright, Chromium, Node.js, npm, test files, and `node_modules` are excluded. There is no npm install or frontend build step in Docker; you only need Docker and Compose on the deployment machine.
 
 Use the production override to name the image and automatically restart the service after failures or Docker restarts:
 
@@ -101,6 +101,10 @@ For a manual check, add an item in your browser, run `docker compose restart web
 - `Dockerfile`, `compose.yaml`, `compose.production.yaml`, `.dockerignore`: lightweight static Nginx image and local/production launch configuration.
 - `tests/`, `playwright.config.js`, `scripts/test-restart.js`: browser tests, viewport settings, and container-restart verification.
 - `package.json`, `package-lock.json`: reproducible development dependencies.
+
+## App icons
+
+The green checkmark favicon matches the app header. `favicon.svg` is the scalable source; `favicon.ico` includes 16, 32, and 48 px frames. PNG variants in `icons/` cover 16, 32, 48, 192, and 512 px. `apple-touch-icon.png` is an opaque 180 px icon for Apple home-screen bookmarks. `site.webmanifest` references the 192 and 512 px Android icons. These are static assets and add no runtime dependencies or offline support.
 
 ## Troubleshooting
 
