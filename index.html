@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f6f1">
+  <title>Shopping list</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div class="brand-mark" aria-hidden="true">✓</div>
+      <p class="eyebrow">A LITTLE LESS TO REMEMBER</p>
+      <h1>Shopping list<span>.</span></h1>
+      <p class="intro">The essentials, all in one place.</p>
+    </header>
+
+    <section class="list-card" aria-label="Your shopping list">
+      <form id="add-form">
+        <label class="sr-only" for="item-name">Item name</label>
+        <input id="item-name" name="item" placeholder="What do you need?" autocomplete="off" required>
+        <button class="add-button" type="submit"><span aria-hidden="true">+</span> Add</button>
+      </form>
+      <div class="list-toolbar">
+        <p id="remaining" role="status">0 items left</p>
+        <button id="clear-purchased" class="text-button" type="button" disabled>Clear purchased</button>
+      </div>
+      <ul id="items" aria-label="Items"></ul>
+      <div id="empty-state">
+        <div class="empty-icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48" fill="none"><path d="M12 17h24l3 23H9l3-23Z"/><path d="M18 19v-8a6 6 0 0 1 12 0v8"/><path d="m19 29 4 4 7-8"/></svg>
+        </div>
+        <h2>A fresh start</h2>
+        <p>Add your first item and make your next<br>shopping trip a little simpler.</p>
+      </div>
+      <p id="storage-notice" role="alert" hidden>Your browser can’t save this list. Changes will only last while this page is open.</p>
+    </section>
+    <footer><span aria-hidden="true">⌁</span> Your list stays in this browser. Just for you.</footer>
+  </main>
+</body>
+</html>

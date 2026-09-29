@@ -1,0 +1,45 @@
+:root { color-scheme: light; font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #27382e; background: #f5f6f1; font-synthesis: none; }
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 280px; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+button:disabled { cursor: default; }
+.app { width: min(100% - 40px, 560px); margin: 76px auto 32px; }
+header { margin-bottom: 32px; }
+.brand-mark { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 13px; background: #dfe9db; color: #426849; font-size: 25px; margin-bottom: 28px; }
+.eyebrow { font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #677767; margin: 0 0 12px; }
+h1 { font-size: clamp(32px, 7vw, 42px); letter-spacing: -1.8px; line-height: 1.15; margin: 0 0 12px; font-weight: 650; }
+h1 span { color: #78966b; }
+.intro { font-size: 15px; color: #697469; margin: 0; }
+.list-card { background: #fff; border: 1px solid #e2e6dc; border-radius: 20px; padding: 24px; box-shadow: 0 8px 30px #34422a05; }
+form { display: flex; gap: 10px; }
+input[type="text"], input:not([type]) { min-width: 0; width: 100%; border: 1px solid #e2e6dc; border-radius: 10px; background: #fafbf8; padding: 15px 14px; color: #27382e; font-size: 15px; }
+input::placeholder { color: #7b8579; }
+.add-button { border: 0; border-radius: 10px; background: #426849; color: white; padding: 0 19px; font-size: 14px; font-weight: 600; white-space: nowrap; }
+.add-button span { font-size: 20px; font-weight: 400; vertical-align: -1px; margin-right: 5px; }
+.add-button:hover { background: #35563b; }
+:focus-visible { outline: 3px solid #85a979; outline-offset: 3px; }
+.list-toolbar { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding-top: 18px; }
+#remaining { font-size: 12px; color: #697469; margin: 0; }
+.text-button { border: 0; background: none; color: #426849; min-height: 44px; font-size: 12px; padding: 0 4px; }
+.text-button:hover:enabled { text-decoration: underline; }
+.text-button:disabled { color: #899086; }
+ul { list-style: none; padding: 0; margin: 0; }
+li { border-top: 1px solid #edf0e8; }
+.item-label { display: flex; align-items: center; gap: 13px; min-height: 64px; padding: 12px 2px; cursor: pointer; }
+.item-label input { appearance: none; flex: 0 0 22px; width: 22px; height: 22px; margin: 0; border: 1.5px solid #cbd4c7; border-radius: 7px; display: grid; place-content: center; background: #fff; }
+.item-label input:checked { background: #e5eddf; border-color: #d5e1cd; }
+.item-label input:checked::after { content: '✓'; font-size: 16px; color: #426849; }
+.item-label span { overflow-wrap: anywhere; line-height: 1.5; font-size: 15px; }
+.purchased span { text-decoration: line-through; color: #7d8779; }
+#empty-state { text-align: center; padding: 35px 0 39px; border-top: 1px solid #edf0e8; }
+.empty-icon { display: grid; place-items: center; width: 68px; height: 68px; border-radius: 50%; background: #f2f5ed; margin: 0 auto 18px; }
+.empty-icon svg { width: 36px; height: 36px; stroke: #7d9670; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+h2 { font-size: 17px; font-weight: 600; margin: 0 0 9px; letter-spacing: -.3px; }
+#empty-state p { color: #778172; font-size: 13px; line-height: 1.7; margin: 0; }
+#storage-notice { border-radius: 8px; background: #fff5dd; color: #765512; font-size: 13px; padding: 12px; line-height: 1.5; }
+footer { text-align: center; font-size: 11px; color: #778172; margin-top: 24px; }
+footer span { margin-right: 5px; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+[hidden] { display: none !important; }
+@media (max-width: 480px) { .app { margin-top: 36px; width: calc(100% - 32px); } .list-card { padding: 18px; } .add-button { padding: 0 14px; } }
