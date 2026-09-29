@@ -1,4 +1,15 @@
 services:
   web:
     image: shopping-list:production
-    restart: unless-stopped
+    ports:
+      - "8053:80"
+    restart: always
+    environment:
+      VIRTUAL_HOST: shopping-list.costa365.site
+      PORT: 8053
+    networks:
+      - nginx-proxy
+
+networks:
+  nginx-proxy:
+    external: true
